@@ -1,11 +1,29 @@
 功能规划列表
 
-<img src="/Users/colton/Library/Application Support/typora-user-images/image-20230210202730669.png" alt="image-20230210202730669" style="zoom:50%;" />
+### HMKG库
 
-函数设计：
+- 完整知识图谱构建
 
-![image-20230210202748574](/Users/colton/Library/Application Support/typora-user-images/image-20230210202748574.png)
+- 部分子图构建（支持多种输入）
+- 知识图谱数据统计，导出统计表
+- 映射至Neo4j图数据库
+- 代谢物相关信息查找（单个、组合）
+- 代谢物反向查找（单个、组合）
+- 结果可视化
+- KGE模型训练
+- Link Prediction
 
-函数设计：
+### Meta2Vec库
 
-<img src="/Users/colton/Library/Application Support/typora-user-images/image-20230210202702678.png" alt="image-20230210202702678" style="zoom:50%;" />
+- 输入HMDB_id，输出向量
+- 输入两个HMDB_id，计算相似度
+- 输入一组HMDB_id，进行k-means聚类，umap分析
+
+
+
+### 当前函数设计
+
+查看[Cancer400_KGE.py](https://github.com/PKU-BDBA/HMKG-Progress/blob/main/Cancer_400/Cancer400_KGE.py)
+
+python main.py运行
+
