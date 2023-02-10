@@ -1,0 +1,59 @@
+总数据类别信息：
+secondary_accession : 695
+synonym : 11928
+alternative_patient : 5162
+substituent : 9672
+external_descriptor : 1801
+taxonomy : 472
+experimental_properties : 666
+predicted_properties : 12551
+spectrum : 8135
+cellular_locations : 773
+biospecimen : 1580
+tissue : 334
+pathway : 98579
+Concentration : 12835
+reference : 15967
+Disease : 2022
+protein : 11397
+ 
+训练集类别信息：
+secondary_accession : 556
+synonym : 9542
+alternative_patient : 4129
+substituent : 7737
+external_descriptor : 1440
+taxonomy : 377
+experimental_properties : 532
+predicted_properties : 10040
+spectrum : 6508
+cellular_locations : 618
+biospecimen : 1264
+tissue : 267
+pathway : 78863
+Concentration : 10268
+reference : 12773
+Disease : 1617
+protein : 9117
+ 
+测试集类别信息:
+secondary_accession : 69
+synonym : 1192
+alternative_patient : 516
+substituent : 967
+external_descriptor : 180
+taxonomy : 47
+experimental_properties : 66
+predicted_properties : 1255
+spectrum : 813
+cellular_locations : 77
+biospecimen : 158
+tissue : 33
+pathway : 9857
+Concentration : 1283
+reference : 1596
+Disease : 202
+protein : 1139
+ 
+评估集类别信息:
+protein : 1139
