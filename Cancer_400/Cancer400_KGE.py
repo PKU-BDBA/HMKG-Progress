@@ -10,6 +10,10 @@ from pykeen.evaluation import RankBasedEvaluator
 import os
 import numpy as np
 from pykeen.models import ConvE,TransE,TransD,TransH,TransR,KG2E,RotatE,DistMult
+import networkx as nx
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+import random
 
 
 class HMKG():
@@ -33,22 +37,63 @@ class HMKG():
     
        
     # 构建三元组
-    def creat_triples(self,json_file):
-        pass
+    def creat_triples(self):
+        with open("data/Cancer_Metabolism.txt","r") as f:
+            self.triples=f.readlines()
+        self.triples=[i.split("\t") for i in tqdm(self.triples)]
+        return self.triples
     
     
     # 数据统计
-    def summary(self):
-        pass
+    def graph_visualization_nx(self,show_pic=True):
+        G = nx.Graph()
+        for h, r, t in tqdm(random.sample(self.triples,30)):
+            G.add_edge(h, t, relation=r)
+
+        pos = nx.spring_layout(G)
+        nx.draw(G, pos, with_labels=False)
+        labels = nx.get_edge_attributes(G, 'relation')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+        if show_pic:
+            plt.show()
+        
 
     # 信息查找
-    def look_into(self,node_list):
-        pass
-    
+    def look_into(self,node_list,selected_relations,show_only=3):
+        relation_count = {}
+
+        for h, r, t in self.triples:
+            if h in node_list and r in selected_relations:
+                if r not in relation_count:
+                    relation_count[r] = {}
+                if t not in relation_count[r]:
+                    relation_count[r][t] = 0
+                relation_count[r][t] += 1
+
+        for r, tail_nodes in relation_count.items():
+            sorted_tail_nodes = sorted(tail_nodes.items(), key=lambda x: x[1], reverse=True)
+            print(f"Relation: {r}")
+            for t, count in sorted_tail_nodes[:show_only]:
+                print(f"  Tail Node: {t} Count: {count}")
+
     
     # 信息反查
-    def look_into_backward(self,node_list):
-        pass
+    def look_into_backward(self,node_list,selected_relations,show_only=3):
+        relation_count = {}
+
+        for h, r, t in self.triples:
+            if t in node_list and r in selected_relations:
+                if r not in relation_count:
+                    relation_count[r] = {}
+                if h not in relation_count[r]:
+                    relation_count[r][h] = 0
+                relation_count[r][h] += 1
+        
+        for r, tail_nodes in relation_count.items():
+            sorted_tail_nodes = sorted(tail_nodes.items(), key=lambda x: x[1], reverse=True)
+            print(f"Relation: {r}")
+            for t, count in sorted_tail_nodes[:show_only]:
+                print(f"  Tail Node: {t} Count: {count}")
     
 
     # 链接Neo4j图数据库
