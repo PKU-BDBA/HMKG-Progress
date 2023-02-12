@@ -14,6 +14,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import random
+from collections import Counter
 
 
 class HMKG():
@@ -45,17 +46,40 @@ class HMKG():
     
     
     # 数据统计
-    def graph_visualization_nx(self,show_pic=True):
+    def graph_visualization_nx(self,show_graph=False,show_bar=True,topk=20):
         G = nx.Graph()
-        for h, r, t in tqdm(random.sample(self.triples,30)):
+        for h, r, t in tqdm(self.triples):
             G.add_edge(h, t, relation=r)
 
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=False)
-        labels = nx.get_edge_attributes(G, 'relation')
-        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-        if show_pic:
+        if show_graph:
+            pos = nx.spring_layout(G)
+            nx.draw(G, pos, with_labels=False)
+            labels = nx.get_edge_attributes(G, 'relation')
+            nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
             plt.show()
+            
+        num_nodes = G.number_of_nodes()
+        num_edges = G.number_of_edges()
+        print("Number of nodes:", num_nodes)
+        print("Number of edges:", num_edges)
+
+        relation_counter = Counter([data['relation'] for u, v, data in G.edges(data=True)])
+        head_counter = Counter([u for u, v, data in G.edges(data=True)])
+        tail_counter = Counter([v for u, v, data in G.edges(data=True)])
+        
+        def draw_statistics(counter,name,topk=20):
+            counter_sorted=sorted(counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+            keys = [k[:20] for k, v in counter_sorted]
+            values = [v for k, v in counter_sorted]
+            plt.title(name)
+            plt.xticks(rotation=45)
+            plt.bar(keys, values)
+            plt.show()
+
+        if show_bar:
+            draw_statistics(relation_counter,"relations",topk)
+            draw_statistics(head_counter,"heads",topk)
+            draw_statistics(tail_counter,"tails",topk)
         
 
     # 信息查找
