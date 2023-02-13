@@ -24,9 +24,9 @@
 
 ### Meta2Vec库
 
-- 输入HMDB_id，输出向量
-- 输入两个HMDB_id，计算相似度
-- 输入一组HMDB_id，进行k-means聚类，umap分析
+- [ ] 输入HMDB_id，输出向量
+- [ ] 输入两个HMDB_id，计算相似度
+- [ ] 输入一组HMDB_id，进行k-means聚类，umap分析
 
 
 
