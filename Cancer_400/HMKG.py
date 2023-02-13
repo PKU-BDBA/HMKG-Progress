@@ -1,3 +1,4 @@
+import csv
 import torch
 import torchvision
 import pickle
@@ -21,6 +22,7 @@ class HMKG():
     
     def __init__(self,model_name) -> None:
         self.model_name=model_name
+        self.entity_path="data/Cancer400_entities.txt" # TODO 合并至KG生成过程中
     
     # 下载HMDB
     def download_HMDB(self):
@@ -38,49 +40,63 @@ class HMKG():
     
        
     # 构建三元组
-    def creat_triples(self):
-        with open("data/Cancer_Metabolism.txt","r") as f:
+    def creat_triples(self,triple_path):
+        with open(triple_path,"r") as f:
             self.triples=f.readlines()
-        self.triples=[i.split("\t") for i in tqdm(self.triples)]
+        self.triples=[i.strip("\n").split("\t") for i in tqdm(self.triples)]
         return self.triples
     
+    @staticmethod
+    def draw_statistics(counter,name,topk=20):
+        counter_sorted=sorted(counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+        keys = [k[:20] for k, v in counter_sorted]
+        values = [v for k, v in counter_sorted]
+        plt.title(name)
+        plt.xticks(rotation=45)
+        plt.bar(keys, values)
+        plt.show()
     
     # 数据统计
-    def graph_visualization_nx(self,show_graph=False,show_bar=True,topk=20):
+    def summary(self,show_bar_graph=True,topk=20):
+        statistics={}
+        
         G = nx.Graph()
         for h, r, t in tqdm(self.triples):
             G.add_edge(h, t, relation=r)
-
-        if show_graph:
-            pos = nx.spring_layout(G)
-            nx.draw(G, pos, with_labels=False)
-            labels = nx.get_edge_attributes(G, 'relation')
-            nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-            plt.show()
             
         num_nodes = G.number_of_nodes()
         num_edges = G.number_of_edges()
         print("Number of nodes:", num_nodes)
         print("Number of edges:", num_edges)
+        statistics["Nodes number"]=num_nodes
+        statistics["Edges number"]=num_edges
 
         relation_counter = Counter([data['relation'] for u, v, data in G.edges(data=True)])
         head_counter = Counter([u for u, v, data in G.edges(data=True)])
         tail_counter = Counter([v for u, v, data in G.edges(data=True)])
         
-        def draw_statistics(counter,name,topk=20):
-            counter_sorted=sorted(counter.items(), key=lambda x: x[1], reverse=True)[:topk]
-            keys = [k[:20] for k, v in counter_sorted]
-            values = [v for k, v in counter_sorted]
-            plt.title(name)
-            plt.xticks(rotation=45)
-            plt.bar(keys, values)
-            plt.show()
+        statistics[f"Top {topk} Relations"]=sorted(relation_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+        statistics[f"Top {topk} Head Entities"]=sorted(head_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+        statistics[f"Top {topk} Tail Entities"]=sorted(tail_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
 
-        if show_bar:
-            draw_statistics(relation_counter,"relations",topk)
-            draw_statistics(head_counter,"heads",topk)
-            draw_statistics(tail_counter,"tails",topk)
+        if show_bar_graph:
+            self.draw_statistics(relation_counter,"relations",topk)
+            self.draw_statistics(head_counter,"heads",topk)
+            self.draw_statistics(tail_counter,"tails",topk)
+            
+        with open("results/statistics.json","w") as f:
+            json.dump(statistics,f)
+            
         
+    def visualize_graph(self,node_num=20):
+        G = nx.Graph()
+        for h, r, t in tqdm(random.sample(self.triples,node_num)):
+            G.add_edge(h, t, relation=r)
+        pos = nx.spring_layout(G)
+        nx.draw(G, pos, with_labels=False)
+        labels = nx.get_edge_attributes(G, 'relation')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+        plt.show()
 
     # 信息查找
     def look_into(self,node_list,selected_relations,show_only=3):
@@ -183,18 +199,18 @@ class HMKG():
         
         print(triple_factor_data.summarize())
 
-        model = KGE_model(
+        self.model = KGE_model(
             triples_factory=triple_factor_data_train,
             entity_representations=[pykeen.nn.Embedding],
             #entity_representations_kwargs=dict()
         )
 
         # Pick an optimizer from Torch
-        optimizer = Adam(params=model.get_grad_params())
+        optimizer = Adam(params=self.model.get_grad_params())
 
         # Pick a training approach (sLCWA or LCWA)
         training_loop = SLCWATrainingLoop(
-            model=model,
+            model=self.model,
             triples_factory=triple_factor_data_train,
             optimizer=optimizer,
         )
@@ -208,16 +224,13 @@ class HMKG():
         if save_model:
             if not os.path.exists("checkpoints/"):
                 os.mkdir("checkpoints")
-            torch.save(model,f"checkpoints/{self.model_name}.pkl")
+            torch.save(self.model,f"checkpoints/{self.model_name}.pkl")
 
-        return model
+        return self.model
 
 
     # KGE测试
-    def Evaluate_KGE(self,model,save_results=True):
-        if type(model)==str:
-            model=torch.load(model)
-        
+    def Evaluate_KGE(self,save_results=True):
         
         triple_factor_data_train,triple_factor_data_vld,triple_factor_data_tst,triple_factor_data=self.construct_triples()
         
@@ -228,7 +241,7 @@ class HMKG():
         
         # Evaluate
         results = evaluator.evaluate(
-            model=model,
+            model=self.model,
             mapped_triples=mapped_triples,
             batch_size=256,
             additional_filter_triples=[
@@ -255,22 +268,19 @@ class HMKG():
 
         
     # 保存所有embedding
-    def save_all_embeddings(self,model):
+    def save_all_embeddings(self):
         if not os.path.exists("embeddings/"):
             os.mkdir("embeddings")
         
-        if type(model)==str:
-            model=torch.load(model)
-        
-        np.save(f"embeddings/{self.model_name}_Entity_Embedding.npy",model.entity_representations[0]._embeddings.weight.data.numpy())
-        np.save(f"embeddings/{self.model_name}_Relation_Embedding.npy",model.relation_representations[0]._embeddings.weight.data.numpy())
+        np.save(f"embeddings/{self.model_name}_Entity_Embedding.npy",self.model.entity_representations[0]._embeddings.weight.data.numpy())
+        np.save(f"embeddings/{self.model_name}_Relation_Embedding.npy",self.model.relation_representations[0]._embeddings.weight.data.numpy())
             
     
     # 保存所有HMDB化合物的embedding
-    def save_hmdb_embeddings(self,model):
-        with open(f"data/{self.model_name}entity_to_id.json","r") as f:
+    def save_hmdb_embeddings(self):
+        with open(f"data/{self.model_name}/entity_to_id.json","r") as f:
             entity_to_id=json.load(f)
-        with open(f"data/{self.model_name}id_to_entity.json","r") as f:
+        with open(f"data/{self.model_name}/id_to_entity.json","r") as f:
             id_to_entity=json.load(f)
         
         HMDBs=[i for i in entity_to_id.keys() if "HMDB" in i]
@@ -281,13 +291,39 @@ class HMKG():
         for i in HMDB_ids:
             HMDB_embedding_dict[id_to_entity[str(i)]]=entity_embeddings[i]
         
-        with open(f"embeddings/{self.model_name}_HMDB_Embedding.pkl","wb") as f:
+        with open(f"results/{self.model_name}_HMDB_Embedding.pkl","wb") as f:
             pickle.dump(HMDB_embedding_dict,f)
 
     
     # 根据输入的类别保存embedding
-    def save_multiple_categories_embedding(self,model,categories):
-        pass
+    def save_multiple_categories_embedding(self,categories):
+        with open(f"data/{self.model_name}/entity_to_id.json","r") as f:
+            entity_to_id=json.load(f)
+        with open(f"data/{self.model_name}/id_to_entity.json","r") as f:
+            id_to_entity=json.load(f)
+        with open(self.entity_path, newline='', encoding='utf-8') as f:
+            entity_list = f.readlines()
+            entity_list = [i.strip("\r\n").split("\t") for i in entity_list]
+        
+        entities={}
+        for entity in entity_list:
+            if entity[1] in categories and entity[0] in entity_to_id.keys():
+                if entity[1] not in entities.keys():
+                    entities[entity[1]] = [entity_to_id[entity[0]]]
+                else:
+                    entities[entity[1]].append(entity_to_id[entity[0]])
+        
+        entity_embeddings=np.load(f"embeddings/{self.model_name}_Entity_Embedding.npy")
+        
+        entity_embeddings_dict={}
+        for category in entities.keys():
+            category_embedding={}
+            for entity_id in entities[category]:
+                    category_embedding[id_to_entity[str(entity_id)]]=entity_embeddings[entity_id]
+            entity_embeddings_dict[category]=category_embedding
+        
+        with open(f"results/{self.model_name}_{'_'.join(categories)}_Embedding.pkl","wb") as f:
+            pickle.dump(entity_embeddings_dict,f)
 
 
     # KGE pipeline
@@ -296,16 +332,16 @@ class HMKG():
         if save_id_mapping:
             self.save_id_mapping(dir_path="data")
         
-        model=self.Train_KGE(save_model=save_model)
+        self.Train_KGE(save_model=save_model)
         
         if save_embeddings:
-            self.save_all_embeddings(model=model)
+            self.save_all_embeddings()
             
         if save_HMDB_embedding:
-            self.save_hmdb_embeddings(model=model)
+            self.save_hmdb_embeddings()
         
         if save_multiple_categories_embedding:
-            self.save_multiple_categories_embedding(model=model,categories=None)
+            self.save_multiple_categories_embedding(categories=save_multiple_categories_embedding)
             
         if eval_model:
-            self.Evaluate_KGE(model,save_results=save_results)
+            self.Evaluate_KGE(save_results=save_results)

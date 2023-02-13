@@ -1,0 +1,477 @@
+HMDB00001	HMDB
+HMDB0004935	HMDB
+HMDB0006703	HMDB
+HMDB0006704	HMDB
+HMDB04935	HMDB
+HMDB06703	HMDB
+HMDB06704	HMDB
+HMDB00002	HMDB
+HMDB0060172	HMDB
+HMDB60172	HMDB
+HMDB00005	HMDB
+HMDB0006544	HMDB
+HMDB06544	HMDB
+HMDB00008	HMDB
+HMDB00010	HMDB
+HMDB0004990	HMDB
+HMDB0004991	HMDB
+HMDB04990	HMDB
+HMDB04991	HMDB
+HMDB0000357	HMDB
+HMDB00011	HMDB
+HMDB00357	HMDB
+HMDB00012	HMDB
+HMDB00014	HMDB
+HMDB00015	HMDB
+HMDB00016	HMDB
+Alpha-amino acid	Substituent
+Amine	Substituent
+Amino acid	Substituent
+Aralkylamine	Substituent
+Aromatic heteromonocyclic compound	Substituent
+Azacycle	Substituent
+Azole	Substituent
+Carbonyl group	Substituent
+Carboxylic acid	Substituent
+Heteroaromatic compound	Substituent
+Histidine or derivatives	Substituent
+Hydrocarbon derivative	Substituent
+Imidazole	Substituent
+Imidazolyl carboxylic acid derivative	Substituent
+L-alpha-amino acid	Substituent
+Monocarboxylic acid or derivatives	Substituent
+N-substituted imidazole	Substituent
+Organic nitrogen compound	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organoheterocyclic compound	Substituent
+Organonitrogen compound	Substituent
+Organooxygen compound	Substituent
+Organopnictogen compound	Substituent
+Primary aliphatic amine	Substituent
+Primary amine	Substituent
+Aliphatic acyclic compound	Substituent
+Hydrocarbon derivative	Substituent
+Organopnictogen compound	Substituent
+Primary aliphatic amine	Substituent
+Aliphatic acyclic compound	Substituent
+Alpha-hydroxy ketone	Substituent
+Alpha-keto acid	Substituent
+Carbonyl group	Substituent
+Carboxylic acid	Substituent
+Carboxylic acid derivative	Substituent
+Hydrocarbon derivative	Substituent
+Ketone	Substituent
+Monocarboxylic acid or derivatives	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Short-chain keto acid	Substituent
+Alcohol	Substituent
+Aliphatic acyclic compound	Substituent
+Alpha-hydroxy acid	Substituent
+Carbonyl group	Substituent
+Carboxylic acid	Substituent
+Carboxylic acid derivative	Substituent
+Fatty acid	Substituent
+Hydrocarbon derivative	Substituent
+Monocarboxylic acid or derivatives	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Secondary alcohol	Substituent
+1-hydroxy-2-unsubstituted benzenoid	Substituent
+17-oxosteroid	Substituent
+3-hydroxysteroid	Substituent
+Alkyl aryl ether	Substituent
+Anisole	Substituent
+Aromatic homopolycyclic compound	Substituent
+Benzenoid	Substituent
+Carbonyl group	Substituent
+Estrogen-skeleton	Substituent
+Ether	Substituent
+Hydrocarbon derivative	Substituent
+Hydroxysteroid	Substituent
+Ketone	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Oxosteroid	Substituent
+Phenanthrene	Substituent
+Tetralin	Substituent
+Alcohol	Substituent
+Aliphatic acyclic compound	Substituent
+Beta-hydroxy acid	Substituent
+Carbonyl group	Substituent
+Carboxylic acid	Substituent
+Carboxylic acid derivative	Substituent
+Fatty acid	Substituent
+Hydrocarbon derivative	Substituent
+Monocarboxylic acid or derivatives	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Secondary alcohol	Substituent
+Short-chain hydroxy acid	Substituent
+Alcohol	Substituent
+Aromatic heteromonocyclic compound	Substituent
+Azacycle	Substituent
+Heteroaromatic compound	Substituent
+Hydrocarbon derivative	Substituent
+Hydropyrimidine	Substituent
+Lactam	Substituent
+Organic nitrogen compound	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organoheterocyclic compound	Substituent
+Organonitrogen compound	Substituent
+Organooxygen compound	Substituent
+Organopnictogen compound	Substituent
+Oxacycle	Substituent
+Primary alcohol	Substituent
+Pyrimidine	Substituent
+Pyrimidine 2-deoxyribonucleoside	Substituent
+Pyrimidone	Substituent
+Secondary alcohol	Substituent
+Tetrahydrofuran	Substituent
+Urea	Substituent
+Vinylogous amide	Substituent
+Alcohol	Substituent
+Amine	Substituent
+Aminopyrimidine	Substituent
+Aromatic heteromonocyclic compound	Substituent
+Azacycle	Substituent
+Heteroaromatic compound	Substituent
+Hydrocarbon derivative	Substituent
+Hydropyrimidine	Substituent
+Imidolactam	Substituent
+Organic nitrogen compound	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organoheterocyclic compound	Substituent
+Organonitrogen compound	Substituent
+Organooxygen compound	Substituent
+Organopnictogen compound	Substituent
+Oxacycle	Substituent
+Primary alcohol	Substituent
+Primary amine	Substituent
+Pyrimidine	Substituent
+Pyrimidine 2-deoxyribonucleoside	Substituent
+Pyrimidone	Substituent
+Secondary alcohol	Substituent
+Tetrahydrofuran	Substituent
+17-hydroxysteroid	Substituent
+20-oxosteroid	Substituent
+21-hydroxysteroid	Substituent
+3-oxo-delta-4-steroid	Substituent
+3-oxosteroid	Substituent
+Alcohol	Substituent
+Aliphatic homopolycyclic compound	Substituent
+Alpha-hydroxy ketone	Substituent
+Carbonyl group	Substituent
+Cyclic alcohol	Substituent
+Cyclic ketone	Substituent
+Cyclohexenone	Substituent
+Delta-4-steroid	Substituent
+Hydrocarbon derivative	Substituent
+Ketone	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Oxosteroid	Substituent
+Pregnane-skeleton	Substituent
+Primary alcohol	Substituent
+Progestogin-skeleton	Substituent
+Tertiary alcohol	Substituent
+20-oxosteroid	Substituent
+21-hydroxysteroid	Substituent
+3-oxo-delta-4-steroid	Substituent
+3-oxosteroid	Substituent
+Alcohol	Substituent
+Aliphatic homopolycyclic compound	Substituent
+Alpha-hydroxy ketone	Substituent
+Carbonyl group	Substituent
+Cyclic ketone	Substituent
+Cyclohexenone	Substituent
+Delta-4-steroid	Substituent
+Hydrocarbon derivative	Substituent
+Ketone	Substituent
+Organic oxide	Substituent
+Organic oxygen compound	Substituent
+Organooxygen compound	Substituent
+Oxosteroid	Substituent
+Pregnane-skeleton	Substituent
+Primary alcohol	Substituent
+Progestogin-skeleton	Substituent
+(2S)-2-Amino-3-(1-methyl-1H-imidazol-4-yl)propanoic acid	Synonyms
+Pi-methylhistidine	Synonyms
+(2S)-2-Amino-3-(1-methyl-1H-imidazol-4-yl)propanoate	Synonyms
+1 Methylhistidine	Synonyms
+1-Methyl histidine	Synonyms
+1-Methyl-histidine	Synonyms
+1-Methyl-L-histidine	Synonyms
+1-MHis	Synonyms
+1-N-Methyl-L-histidine	Synonyms
+L-1-Methylhistidine	Synonyms
+N1-Methyl-L-histidine	Synonyms
+1-Methylhistidine dihydrochloride	Synonyms
+1-Methylhistidine	Synonyms
+1,3-Propanediamine	Synonyms
+1,3-Propylenediamine	Synonyms
+Propane-1,3-diamine	Synonyms
+tn	Synonyms
+Trimethylenediamine	Synonyms
+1,3-Diaminepropane	Synonyms
+Trimethylenediamine dihydrochloride	Synonyms
+Trimethylenediamine hydrochloride	Synonyms
+1,3-diamino-N-Propane	Synonyms
+1,3-Trimethylenediamine	Synonyms
+3-Aminopropylamine	Synonyms
+a,W-Propanediamine	Synonyms
+1,3-Diaminopropane	Synonyms
+2-Ketobutanoic acid	Synonyms
+2-Oxobutyric acid	Synonyms
+3-Methyl pyruvic acid	Synonyms
+alpha-Ketobutyrate	Synonyms
+alpha-Ketobutyric acid	Synonyms
+alpha-oxo-N-Butyric acid	Synonyms
+2-Oxobutyrate	Synonyms
+2-Oxobutanoic acid	Synonyms
+2-Ketobutanoate	Synonyms
+3-Methyl pyruvate	Synonyms
+a-Ketobutyrate	Synonyms
+a-Ketobutyric acid	Synonyms
+Α-ketobutyrate	Synonyms
+Α-ketobutyric acid	Synonyms
+a-oxo-N-Butyrate	Synonyms
+a-oxo-N-Butyric acid	Synonyms
+alpha-oxo-N-Butyrate	Synonyms
+Α-oxo-N-butyrate	Synonyms
+Α-oxo-N-butyric acid	Synonyms
+2-Oxobutanoate	Synonyms
+2-Ketobutyrate	Synonyms
+2-oxo-Butanoate	Synonyms
+2-oxo-Butanoic acid	Synonyms
+2-oxo-Butyrate	Synonyms
+2-oxo-Butyric acid	Synonyms
+2-oxo-N-Butyrate	Synonyms
+2-oxo-N-Butyric acid	Synonyms
+3-Methylpyruvate	Synonyms
+3-Methylpyruvic acid	Synonyms
+a-Keto-N-butyrate	Synonyms
+a-Keto-N-butyric acid	Synonyms
+a-Oxobutyrate	Synonyms
+a-Oxobutyric acid	Synonyms
+alpha-Keto-N-butyrate	Synonyms
+alpha-Keto-N-butyric acid	Synonyms
+alpha-Ketobutric acid	Synonyms
+alpha-Oxobutyrate	Synonyms
+alpha-Oxobutyric acid	Synonyms
+Methyl-pyruvate	Synonyms
+Methyl-pyruvic acid	Synonyms
+Propionyl-formate	Synonyms
+Propionyl-formic acid	Synonyms
+alpha-Ketobutyric acid, sodium salt	Synonyms
+2-Ketobutyric acid	Synonyms
+(S)-2-Hydroxybutanoic acid	Synonyms
+2-Hydroxybutyrate	Synonyms
+2-Hydroxybutyric acid	Synonyms
+L-2-Hydroxybutanoic acid	Synonyms
+L-2-Hydroxybutyric acid	Synonyms
+L-alpha-Hydroxybutanoic acid	Synonyms
+L-alpha-Hydroxybutyric acid	Synonyms
+(S)-2-Hydroxybutanoate	Synonyms
+L-2-Hydroxybutanoate	Synonyms
+L-2-Hydroxybutyrate	Synonyms
+L-a-Hydroxybutanoate	Synonyms
+L-a-Hydroxybutanoic acid	Synonyms
+L-alpha-Hydroxybutanoate	Synonyms
+L-Α-hydroxybutanoate	Synonyms
+L-Α-hydroxybutanoic acid	Synonyms
+L-a-Hydroxybutyrate	Synonyms
+L-a-Hydroxybutyric acid	Synonyms
+L-alpha-Hydroxybutyrate	Synonyms
+L-Α-hydroxybutyrate	Synonyms
+L-Α-hydroxybutyric acid	Synonyms
+(S)-2-Hydroxybutyrate	Synonyms
+2-Hydroxybutanoate	Synonyms
+(+)-2-Hydroxy-n-butyric acid	Synonyms
+(+)-2-Hydroxybutanoic acid	Synonyms
+(+)-2-Hydroxybutyric acid	Synonyms
+(+)-alpha-Hydroxybutyric acid	Synonyms
+(+)-α-Hydroxybutyric acid	Synonyms
+(2S)-2-Hydroxybutanoic acid	Synonyms
+(S)-(+)-2-Hydroxybutanoic acid	Synonyms
+(S)-2-Hydroxybutyric acid	Synonyms
+2-Hydroxybutanoic acid	Synonyms
+alpha-Hydroxy-n-butyric acid	Synonyms
+alpha-Hydroxybutanoic acid	Synonyms
+alpha-Hydroxybutyric acid	Synonyms
+α-Hydroxy-n-butyric acid	Synonyms
+α-Hydroxybutanoic acid	Synonyms
+α-Hydroxybutyric acid	Synonyms
+2-(8S,9S,13S,14S)-3-Hydroxy-2-methoxy-13-methyl-7,8,9,11,12,14,15,16-octahydro-6H-cyclopenta[a]phenanthren-17-one	Synonyms
+2-Hydroxyestrone 2-methyl ether	Synonyms
+2-Methoxy-17-oxoestra-1,3,5(10)-trien-3-ol	Synonyms
+2-Methoxy-3-hydroxyestra-1,3,5(10)-trien-17-one	Synonyms
+3-Hydroxy-2-methoxy-estra-1,3,5(10)-trien-17-one	Synonyms
+3-Hydroxy-2-methoxyestra-1,3,5(10)-trien-17-one	Synonyms
+Methoxy-estrone	Synonyms
+(R)-(-)-beta-Hydroxybutyric acid	Synonyms
+(R)-3-Hydroxybutanoic acid	Synonyms
+3-D-Hydroxybutyric acid	Synonyms
+D-3-Hydroxybutyric acid	Synonyms
+D-beta-Hydroxybutyric acid	Synonyms
+(R)-(-)-b-Hydroxybutyrate	Synonyms
+(R)-(-)-b-Hydroxybutyric acid	Synonyms
+(R)-(-)-beta-Hydroxybutyrate	Synonyms
+(R)-(-)-Β-hydroxybutyrate	Synonyms
+(R)-(-)-Β-hydroxybutyric acid	Synonyms
+(R)-3-Hydroxybutanoate	Synonyms
+3-D-Hydroxybutyrate	Synonyms
+D-3-Hydroxybutyrate	Synonyms
+D-b-Hydroxybutyrate	Synonyms
+D-b-Hydroxybutyric acid	Synonyms
+D-beta-Hydroxybutyrate	Synonyms
+D-Β-hydroxybutyrate	Synonyms
+D-Β-hydroxybutyric acid	Synonyms
+(R)-3-Hydroxybutyrate	Synonyms
+3-delta-Hydroxybutyrate	Synonyms
+3-delta-Hydroxybutyric acid	Synonyms
+BHIB	Synonyms
+D-(-)-3-Hydroxybutyrate	Synonyms
+delta-(-)-3-Hydroxybutyrate	Synonyms
+delta-3-Hydroxybutyrate	Synonyms
+delta-3-Hydroxybutyric acid	Synonyms
+delta-beta-Hydroxybutyrate	Synonyms
+3R-Hydroxy-butanoate	Synonyms
+(R)-3-Hydroxybutyric acid	Synonyms
+(-)-3-Hydroxy-n-butyric acid	Synonyms
+(-)-3-Hydroxybutyric acid	Synonyms
+(3R)-3-Hydroxybutanoic acid	Synonyms
+(3R)-3-Hydroxybutyric acid	Synonyms
+(3R)-Hydroxybutyrate	Synonyms
+(R)-(-)-3-Hydroxybutyric acid	Synonyms
+(R)-beta-Hydroxybutanoic acid	Synonyms
+(R)-beta-Hydroxybutyric acid	Synonyms
+(R)-β-Hydroxybutanoic acid	Synonyms
+(R)-β-Hydroxybutyric acid	Synonyms
+3-Hydroxy-n-butyric acid	Synonyms
+3-Hydroxybutanoic acid	Synonyms
+3-Hydroxybutyric acid	Synonyms
+3R-Hydroxybutanoic acid	Synonyms
+D-(-)-3-Hydroxybutanoic acid	Synonyms
+D-(-)-3-Hydroxybutyric acid	Synonyms
+D-(-)-beta-Hydroxybutyric acid	Synonyms
+D-(-)-β-Hydroxybutyric acid	Synonyms
+beta-Hydroxy-n-butyric acid	Synonyms
+beta-Hydroxybutanoic acid	Synonyms
+beta-Hydroxybutyric acid	Synonyms
+β-Hydroxy-n-butyric acid	Synonyms
+β-Hydroxybutanoic acid	Synonyms
+β-Hydroxybutyric acid	Synonyms
+2-Deoxyuridine	Synonyms
+dU	Synonyms
+2-Deoxyuridine	Synonyms
+1-(2-Deoxy-beta-D-erythro-pentofuranosyl)-2,4(1H,3H)-pyrimidinedione	Synonyms
+1-(2-Deoxy-beta-D-ribofuranosyl)-2,4(1H,3H)-pyrimidinedione	Synonyms
+1-(2-Deoxy-beta-delta-erythro-pentofuranosyl)-2,4(1H,3H)-pyrimidinedione	Synonyms
+1-(2-Deoxy-beta-delta-ribofuranosyl)-2,4(1H,3H)-pyrimidinedione	Synonyms
+1-(2-Deoxy-D-erythro-pentofuranosyl)uracil	Synonyms
+1-(2-Deoxy-delta-erythro-pentofuranosyl)uracil	Synonyms
+2-Desoxyuridine	Synonyms
+Deoxyribose uracil	Synonyms
+Desoxyuridine	Synonyms
+Uracil deoxyriboside	Synonyms
+Uracil desoxyuridine	Synonyms
+(beta 1-(2-Deoxyribopyranosyl))thymidine	Synonyms
+Deoxyuridine	Synonyms
+4-Amino-1-[(2R,4S,5R)-4-hydroxy-5-(hydroxymethyl)tetrahydrofuran-2-yl]pyrimidin-2(1H)-one	Synonyms
+dC	Synonyms
+DCYD	Synonyms
+2-Deoxycytidine	Synonyms
+1-(2-Deoxy-b-D-ribofuranosyl)cytosine	Synonyms
+1-(2-Deoxy-beta-D-erythro-pentofuranosyl)-cytosine	Synonyms
+1-(2-Deoxy-beta-D-ribofuranosyl)cytosine	Synonyms
+1-(2-Deoxy-beta-delta-erythro-pentofuranosyl)-cytosine	Synonyms
+1-(2-Deoxy-beta-delta-ribofuranosyl)cytosine	Synonyms
+2-Deoxy-cytidine	Synonyms
+4-Amino-1-(2-deoxy-b-D-erythro-pentofuranosyl)-2(1H)-pyrimidinone	Synonyms
+4-Amino-1-(2-deoxy-beta-D-erythro-pentofuranosyl)-2(1H)-pyrimidinone	Synonyms
+4-Amino-1-(2-deoxy-beta-delta-erythro-pentofuranosyl)-2(1H)-pyrimidinone	Synonyms
+Cytosine deoxyribonucleoside	Synonyms
+Cytosine deoxyriboside	Synonyms
+Deoxy-cytidine	Synonyms
+Deoxyribose cytidine	Synonyms
+Desoxycytidine	Synonyms
+Deoxyribonucleoside, cytosine	Synonyms
+Deoxyriboside, cytosine	Synonyms
+Deoxycytidine	Synonyms
+11-Desoxy-17-hydroxycorticosterone	Synonyms
+Cortodoxone	Synonyms
+Reichstein substance S	Synonyms
+Substance S, reichsteins	Synonyms
+11 Deoxycortisol	Synonyms
+11 Desoxycortisol	Synonyms
+11 Desoxycortisone	Synonyms
+S, Reichsteins substance	Synonyms
+11-Desoxycortisol	Synonyms
+11-Desoxycortisone	Synonyms
+Reichsteins substance S	Synonyms
+11-Deoxycortisol	Synonyms
+SK&F 3050	Synonyms
+Reichsteins substance S	Synonyms
+11-Deoxy-17-hydroxycorticosterone	Synonyms
+11-Deoxyhydrocortisone	Synonyms
+11-Desoxyhydrocortisone	Synonyms
+17,21-Dihydroxy-4-pregnene-3,20-dione	Synonyms
+17,21-Dihydroxypregn-4-ene-3,20-dione	Synonyms
+17,21-Dihydroxyprogesterone	Synonyms
+17-Hydroxy-11-deoxycorticosterone	Synonyms
+17alpha-Hydroxycortexone	Synonyms
+20-Dione 17,21-dihydroxypregn-4-ene-3	Synonyms
+4-Pregnene-17alpha,21-diol-3,20-dione	Synonyms
+Compound S	Synonyms
+11-Deoxy-17-hydrocorticosterone	Synonyms
+11-Deoxycortisone	Synonyms
+11-Desoxy-17α-hydroxycorticosterone	Synonyms
+11-Desoxy-17alpha-hydroxycorticosterone	Synonyms
+17,21-Dihydroxypregn-4-en-3,20-dione	Synonyms
+17Α,21-dihydroxy-4-pregnen-3,20-dione	Synonyms
+17Α,21-dihydroxypregn-4-ene-3,20-dione	Synonyms
+17Α,21-dihydroxyprogesterone	Synonyms
+17Α-hydroxycortexone	Synonyms
+4-Pregnen-17α,21-diol-3,20-dione	Synonyms
+4-Pregnene-17α,21-diol-3,20-dione	Synonyms
+17alpha,21-Dihydroxy-4-pregnen-3,20-dione	Synonyms
+17alpha,21-Dihydroxypregn-4-ene-3,20-dione	Synonyms
+17alpha,21-Dihydroxyprogesterone	Synonyms
+4-Pregnen-17alpha,21-diol-3,20-dione	Synonyms
+Cortexolone	Synonyms
+21-Hydroxy-4-pregnene-3,20-dione	Synonyms
+21-Hydroxyprogesterone	Synonyms
+4-Pregnen-21-ol-3,20-dione	Synonyms
+Cortexone	Synonyms
+DESOXYCORTICOSTERONE	Synonyms
+Desoxycortone	Synonyms
+DOC	Synonyms
+Kendalls desoxy compound b	Synonyms
+Reichsteins substance Q	Synonyms
+11-Dehydroxycorticosterone	Synonyms
+11-Deoxy-corticosterone	Synonyms
+11-Deoxycorticosterone	Synonyms
+11-Desoxycorticosterone	Synonyms
+21-Hydroxy-3,20-dioxopregn-4-ene	Synonyms
+21-Hydroxy-D4-pregnane-3,20-dione	Synonyms
+21-Hydroxy-D4-pregnene-3,20-dione	Synonyms
+21-Hydroxy-pregn-4-ene-3,20-dione	Synonyms
+21-Hydroxy-progesterone	Synonyms
+21-Hydroxypregn-4-ene-3,20-dione	Synonyms
+D4-Pregnene-21-ol-3,20-dione	Synonyms
+Deoxycortone	Synonyms
+Doca	Synonyms
+11-Decorticosterone	Synonyms
+21 Hydroxyprogesterone	Synonyms
+11 Decorticosterone	Synonyms
+21 Hydroxy 4 pregnene 3,20 dione	Synonyms
+Deoxycorticosterone	Synonyms
