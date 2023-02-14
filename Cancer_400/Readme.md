@@ -19,7 +19,7 @@
 - [x] 保存所有Embedding 
 - [x] KGE模型训练pipeline
 - [x] 获得所有HMDB向量
-- [ ] 获得所有需要的类别的向量
+- [x] 获得所有需要的类别的向量
 - [ ] Link Prediction
 
 ### Meta2Vec库
