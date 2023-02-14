@@ -1,0 +1,6 @@
+README.md
+setup.py
+Meta2Vec.egg-info/PKG-INFO
+Meta2Vec.egg-info/SOURCES.txt
+Meta2Vec.egg-info/dependency_links.txt
+Meta2Vec.egg-info/top_level.txt
