@@ -40,66 +40,132 @@ class HMKG():
     
        
     # 构建三元组
-    def creat_triples(self,triple_path):
-        with open(triple_path,"r") as f:
-            self.triples=f.readlines()
-        self.triples=[i.strip("\n").split("\t") for i in tqdm(self.triples)]
+    def create_triples(self, triple_path):
+        """Reads a file containing triples and stores them as a list of tuples.
+
+        Args:
+            triple_path (str): The path of the file containing triples.
+
+        Returns:
+            list: A list of tuples, where each tuple contains three elements representing a triple.
+
+        """
+        with open(triple_path, "r", encoding="utf-8") as f:
+            self.triples = f.readlines()
+
+        self.triples = [i.strip("\n").split("\t") for i in tqdm(self.triples)]
+        
         return self.triples
     
+    
     @staticmethod
-    def draw_statistics(counter,name,topk=20):
-        counter_sorted=sorted(counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+    def draw_statistics(counter, name, topk=20):
+        """Draws a bar chart to visualize the top-k most frequent items in a counter.
+
+        Args:
+            counter (collections.Counter): The counter object containing the frequency count of items.
+            name (str): The title of the plot.
+            topk (int): The number of top-k items to plot. Default is 20.
+
+        Returns:
+            None.
+
+        """
+        counter_sorted = sorted(counter.items(), key=lambda x: x[1], reverse=True)[:topk]
         keys = [k[:20] for k, v in counter_sorted]
         values = [v for k, v in counter_sorted]
+
+        # Plot the bar chart
         plt.title(name)
         plt.xticks(rotation=45)
         plt.bar(keys, values)
         plt.show()
+
     
     # 数据统计
-    def summary(self,show_bar_graph=True,topk=20):
-        statistics={}
-        
+    def summary(self, show_bar_graph=True, save_result=False,topk=20):
+        """Summarizes the statistics of the knowledge graph and saves them to a JSON file.
+
+        Args:
+            show_bar_graph (bool): Whether to display the bar graph of the frequency count. Default is True.
+            topk (int): The number of top-k items to show in the bar graph. Default is 20.
+
+        Returns:
+            None.
+
+        """
+        statistics = {}
+
         G = nx.Graph()
         for h, r, t in tqdm(self.triples):
             G.add_edge(h, t, relation=r)
-            
+
         num_nodes = G.number_of_nodes()
         num_edges = G.number_of_edges()
         print("Number of nodes:", num_nodes)
         print("Number of edges:", num_edges)
-        statistics["Nodes number"]=num_nodes
-        statistics["Edges number"]=num_edges
+        statistics["Nodes number"] = num_nodes
+        statistics["Edges number"] = num_edges
 
         relation_counter = Counter([data['relation'] for u, v, data in G.edges(data=True)])
         head_counter = Counter([u for u, v, data in G.edges(data=True)])
         tail_counter = Counter([v for u, v, data in G.edges(data=True)])
-        
-        statistics[f"Top {topk} Relations"]=sorted(relation_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
-        statistics[f"Top {topk} Head Entities"]=sorted(head_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
-        statistics[f"Top {topk} Tail Entities"]=sorted(tail_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+
+        statistics[f"Top {topk} Relations"] = sorted(relation_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+        statistics[f"Top {topk} Head Entities"] = sorted(head_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
+        statistics[f"Top {topk} Tail Entities"] = sorted(tail_counter.items(), key=lambda x: x[1], reverse=True)[:topk]
 
         if show_bar_graph:
-            self.draw_statistics(relation_counter,"relations",topk)
-            self.draw_statistics(head_counter,"heads",topk)
-            self.draw_statistics(tail_counter,"tails",topk)
-            
-        with open("results/statistics.json","w") as f:
-            json.dump(statistics,f)
+            self.draw_statistics(relation_counter, "relations", topk)
+            self.draw_statistics(head_counter, "heads", topk)
+            self.draw_statistics(tail_counter, "tails", topk)
+
+        if save_result:
+            print("statistics results saved to results/statistics.json")
+            with open("results/statistics.json", "w") as f:
+                json.dump(statistics, f)
+
             
         
-    def visualize_graph(self,node_num=20):
+    def visualize_graph(self, node_num=20):
+        """
+        Visualize a random sample of the triples in the dataset as a graph.
+        
+        Args:
+            node_num (int): The number of nodes to include in the graph.
+            
+        Returns:
+            None
+        """
+        # Create a new graph with a random sample of the triples
         G = nx.Graph()
-        for h, r, t in tqdm(random.sample(self.triples,node_num)):
+        for h, r, t in tqdm(random.sample(self.triples, node_num)):
             G.add_edge(h, t, relation=r)
+            
+        # Use spring layout to position the nodes and draw the graph
         pos = nx.spring_layout(G)
         nx.draw(G, pos, with_labels=False)
+        
+        # Add edge labels to the graph
         labels = nx.get_edge_attributes(G, 'relation')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+        
+        # Display the graph
         plt.show()
+        
 
     # 信息查找
-    def look_into(self,node_list,selected_relations,show_only=3):
+    def lookup(self, node_list, selected_relations, show_only=3,save_results=False,save_path="results/lookup.json"):
+        """Lookup triplets based on specified nodes and relations and display the results.
+
+        Args:
+            node_list (list): List of nodes to include in search.
+            selected_relations (list): List of relations to include in search.
+            show_only (int, optional): Number of tail nodes to display. Defaults to 3.
+
+        Returns:
+            None
+        """
         relation_count = {}
 
         for h, r, t in self.triples:
@@ -110,15 +176,33 @@ class HMKG():
                     relation_count[r][t] = 0
                 relation_count[r][t] += 1
 
+        lookup_result={}
+        
         for r, tail_nodes in relation_count.items():
+            if save_results:
+                lookup_result[r]=tail_nodes
             sorted_tail_nodes = sorted(tail_nodes.items(), key=lambda x: x[1], reverse=True)
             print(f"Relation: {r}")
             for t, count in sorted_tail_nodes[:show_only]:
                 print(f"  Tail Node: {t} Count: {count}")
-
+        
+        if save_results:
+            print(f"lookup results saved to {save_path}")
+            with open(save_path, "w") as f:
+                json.dump(lookup_result, f)
     
     # 信息反查
-    def look_into_backward(self,node_list,selected_relations,show_only=3):
+    def lookup_backward(self, node_list, selected_relations, show_only=3,save_results=False,save_path="results/lookup_backward.json"):
+        """Lookup triplets based on specified nodes and relations in backward direction and display the results.
+
+        Args:
+            node_list (list): List of nodes to include in search.
+            selected_relations (list): List of relations to include in search.
+            show_only (int, optional): Number of tail nodes to display. Defaults to 3.
+
+        Returns:
+            None
+        """
         relation_count = {}
 
         for h, r, t in self.triples:
@@ -128,13 +212,21 @@ class HMKG():
                 if h not in relation_count[r]:
                     relation_count[r][h] = 0
                 relation_count[r][h] += 1
+
+        lookup_result={}
         
-        for r, tail_nodes in relation_count.items():
-            sorted_tail_nodes = sorted(tail_nodes.items(), key=lambda x: x[1], reverse=True)
+        for r, head_nodes in relation_count.items():
+            if save_results:
+                lookup_result[r]=head_nodes
+            sorted_head_nodes = sorted(head_nodes.items(), key=lambda x: x[1], reverse=True)
             print(f"Relation: {r}")
-            for t, count in sorted_tail_nodes[:show_only]:
-                print(f"  Tail Node: {t} Count: {count}")
-    
+            for h, count in sorted_head_nodes[:show_only]:
+                print(f"  Head Node: {h} Count: {count}")
+        
+        if save_results:
+            print(f"lookup results saved to {save_path}")
+            with open(save_path, "w") as f:
+                json.dump(lookup_result, f)    
 
     # 链接Neo4j图数据库
     def Neo4j_converter(self):
@@ -143,37 +235,57 @@ class HMKG():
     
     # Pykeen三元组构建
     def construct_triples(self,
-                          train_pth="data/TrainingSet.txt",
-                          valid_pth="data/EvaluationSet.txt",
-                          test_pth="data/TestSet.txt",
+                          train_path="data/TrainingSet.txt",
+                          valid_path="data/EvaluationSet.txt",
+                          test_path="data/TestSet.txt", 
                           create_inverse_triples=True):
-        
-        triple_factor_data = PathDataset(training_path=train_pth, testing_path=test_pth, validation_path=valid_pth, create_inverse_triples=create_inverse_triples)
-        triple_factor_data_train = triple_factor_data.training
-        triple_factor_data_tst = triple_factor_data.testing
-        triple_factor_data_vld = triple_factor_data.validation
+        """Construct triples from the provided training, testing and validation sets.
 
-        return triple_factor_data_train,triple_factor_data_vld,triple_factor_data_tst,triple_factor_data
+        Args:
+            train_path (str, optional): Path to training set file. Defaults to "data/TrainingSet.txt".
+            valid_path (str, optional): Path to validation set file. Defaults to "data/EvaluationSet.txt".
+            test_path (str, optional): Path to testing set file. Defaults to "data/TestSet.txt".
+            create_inverse_triples (bool, optional): Whether or not to create inverse triples. Defaults to True.
+
+        Returns:
+            tuple: Tuple containing training, validation and testing data.
+        """
+        triple_factor_data = PathDataset(training_path=train_path,
+                                         testing_path=test_path,
+                                         validation_path=valid_path,
+                                         create_inverse_triples=create_inverse_triples)
+        triple_factor_data_train = triple_factor_data.training
+        triple_factor_data_test = triple_factor_data.testing
+        triple_factor_data_val = triple_factor_data.validation
+
+        return triple_factor_data_train, triple_factor_data_val, triple_factor_data_test, triple_factor_data
     
     
     # 保存xx_to_id,id_to_xx文件
-    def save_id_mapping(self,dir_path="data"):
+    def save_id_mapping(self, dir_path="data"):
+        """Save id mapping of the constructed triples in JSON format to the specified directory.
+
+        Args:
+            dir_path (str, optional): Directory to save the files. Defaults to "data".
+
+        Returns:
+            None
+        """
+        _, _, _, triple_factor_data = self.construct_triples()
+
+        if not os.path.exists(os.path.join(dir_path, self.model_name)):
+            os.mkdir(os.path.join(dir_path, self.model_name))
+
+        with open(os.path.join(dir_path, self.model_name, "entity_to_id.json"), "w") as f:
+            json.dump(triple_factor_data.entity_to_id, f)
+        with open(os.path.join(dir_path, self.model_name, "id_to_entity.json"), "w") as f:
+            json.dump({i: j for j, i in triple_factor_data.entity_to_id.items()}, f)
+
+        with open(os.path.join(dir_path, self.model_name, "relation_to_id.json"), "w") as f:
+            json.dump(triple_factor_data.relation_to_id, f)
+        with open(os.path.join(dir_path, self.model_name, "id_to_relation.json"), "w") as f:
+            json.dump({i: j for j, i in triple_factor_data.relation_to_id.items()}, f)
         
-        _,_,_,triple_factor_data=self.construct_triples()
-        
-        if not os.path.exists(os.path.join(dir_path,self.model_name)):
-            os.mkdir(os.path.join(dir_path,self.model_name))
-        
-        with open(os.path.join(dir_path,self.model_name,"entity_to_id.json"),"w") as f:
-            json.dump(triple_factor_data.entity_to_id,f)
-        with open(os.path.join(dir_path,self.model_name,"id_to_entity.json"),"w") as f:
-            json.dump({i:j for j,i in triple_factor_data.entity_to_id.items()},f)
-        
-        with open(os.path.join(dir_path,self.model_name,"relation_to_id.json"),"w") as f:
-            json.dump(triple_factor_data.relation_to_id,f)
-        with open(os.path.join(dir_path,self.model_name,"id_to_relation.json"),"w") as f:
-            json.dump({i:j for j,i in triple_factor_data.relation_to_id.items()},f)
-    
     
     # KGE训练
     def Train_KGE(self,save_model=True):
@@ -251,7 +363,6 @@ class HMKG():
         )
 
         print(results.data)
-        print(results.metrics)
         
         if save_results:
             result_data_json = json.dumps({str(k): results.data[k] for k in results.data.keys()}, indent=4, ensure_ascii=False)
