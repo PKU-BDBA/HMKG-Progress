@@ -1,6 +1,8 @@
+MANIFEST.in
 README.md
 setup.py
-Meta2Vec.egg-info/PKG-INFO
-Meta2Vec.egg-info/SOURCES.txt
-Meta2Vec.egg-info/dependency_links.txt
-Meta2Vec.egg-info/top_level.txt
+meta2vec/__init__.py
+meta2vec.egg-info/PKG-INFO
+meta2vec.egg-info/SOURCES.txt
+meta2vec.egg-info/dependency_links.txt
+meta2vec.egg-info/top_level.txt
