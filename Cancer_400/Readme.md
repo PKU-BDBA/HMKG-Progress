@@ -23,10 +23,11 @@
 - [ ] Link Prediction
 
 ### Meta2Vec库
-
-- [ ] 输入HMDB_id，输出向量
-- [ ] 输入两个HMDB_id，计算相似度
-- [ ] 输入一组HMDB_id，进行k-means聚类，umap分析
+查看[meta2vec](https://github.com/YuxingLu613/meta2vec)
+[pypi地址](https://pypi.org/project/meta2vec/0.0.4/)
+- [x] 输入HMDB_id，输出向量
+- [x] 输入两个HMDB_id，计算相似度
+- [x] 输入一组HMDB_id，umap分析
 
 
 
