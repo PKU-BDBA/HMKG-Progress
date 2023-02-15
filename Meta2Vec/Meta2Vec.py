@@ -1,13 +1,17 @@
 import pickle
 import numpy as np
+import umap
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 class Meta2Vec():
     
-    
-    def __init__(self,) -> None:
-        return
-    
+    def __init__(self,embedding_path="embedding/TransE_HMDB_Embedding.pkl") -> None:
+        self.load_embedding(embedding_path)
+        self.get_available_hmdbs()
+        
     
     def load_embedding(self,embedding_path="embedding/TransE_HMDB_Embedding.pkl"):
         self.embedding_path=embedding_path
@@ -17,7 +21,8 @@ class Meta2Vec():
     
     
     def get_available_hmdbs(self):
-        return list(self.hmdb_embeddings.keys())
+        self.vocab=list(self.hmdb_embeddings.keys())
+        return self.vocab
     
     
     def get_hmdb_embedding(self,hmdb_id_list):
@@ -41,9 +46,19 @@ class Meta2Vec():
         for hmdb_id, embedding in self.hmdb_embeddings.items():
             if hmdb_id!=hmdb_1:
                 similarity_dict[hmdb_id]=np.dot(hmdb_1_embedding, embedding) / (np.linalg.norm(hmdb_1_embedding) * np.linalg.norm(embedding))
-        return similarity_dict
+        return list(similarity_dict.items())
     
     
+    def most_similar(self,hmdb_1,topk=5):
+        return self.cal_similarity_all(hmdb_1)[:topk]
+    
+    
+    def visualize_umap(self):
+        reducer = umap.UMAP()
+        hmdb_2d_embedding = reducer.fit_transform(list(self.hmdb_embeddings.values()))
+        sns.scatterplot(x=hmdb_2d_embedding[:,0], y=hmdb_2d_embedding[:,1])
+        plt.show()
+ 
     
     
 if __name__=="__main__":
@@ -52,3 +67,4 @@ if __name__=="__main__":
     print(len(meta2vec.get_available_hmdbs()))
     meta2vec.get_hmdb_embedding(list(meta2vec.hmdb_embeddings.keys())[:10])
     print(meta2vec.cal_similarity("HMDB0000001","HMDB0000060"))
+    meta2vec.visualize_umap()
