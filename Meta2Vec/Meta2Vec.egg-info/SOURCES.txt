@@ -1,6 +1,7 @@
 MANIFEST.in
 README.md
 setup.py
+dist/meta2vec-0.0.3.tar.gz
 meta2vec/__init__.py
 meta2vec.egg-info/PKG-INFO
 meta2vec.egg-info/SOURCES.txt

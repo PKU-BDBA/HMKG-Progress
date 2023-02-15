@@ -88,8 +88,25 @@ class Meta2Vec:
             hmdb_id_list = [hmdb_id_list]
         hmdb_embedding = {}
         for id in hmdb_id_list:
-            hmdb_embedding.get(id, self.hmdb_embeddings[id])
+            hmdb_embedding[id]=self.hmdb_embeddings[id]
         return hmdb_embedding
+    
+        
+    def cal_similarity(self, hmdb_1,hmdb_2):
+        """
+        Calculates the cosine similarity between two metabolities.
+
+        Parameters:
+        hmdb_1 (str): the first HMDB ID to compare
+        hmdb_2 (str): the second HMDB ID to compare
+
+        Returns:
+        similarity_score (float): the similarity between the embedding of hmdb_1 and hmdb_2
+        """
+        hmdb_1_embedding = self.hmdb_embeddings[hmdb_1]
+        hmdb_2_embedding = self.hmdb_embeddings[hmdb_2]
+        similarity = np.dot(hmdb_1_embedding, hmdb_2_embedding) / (np.linalg.norm(hmdb_1_embedding) * np.linalg.norm(hmdb_2_embedding))
+        return similarity
     
     def cal_similarity_all(self, hmdb_1):
         """

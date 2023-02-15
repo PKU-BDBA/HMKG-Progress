@@ -7,7 +7,7 @@ requirements = []
 
 setup(
     name="meta2vec",
-    version="0.0.3",
+    version="0.0.4",
     author="Yuxing Lu",
     author_email="yxlu0613@gmail.com",
     description="meta2vec, an embedding for Metabolomics study",
