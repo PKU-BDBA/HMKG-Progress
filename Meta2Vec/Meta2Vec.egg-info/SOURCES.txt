@@ -9,5 +9,4 @@ meta2vec/visualize.py
 meta2vec.egg-info/PKG-INFO
 meta2vec.egg-info/SOURCES.txt
 meta2vec.egg-info/dependency_links.txt
-meta2vec.egg-info/requires.txt
 meta2vec.egg-info/top_level.txt

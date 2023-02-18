@@ -64,7 +64,7 @@ def embedding_euclidean_distance(hmdb_1_embedding: np.ndarray, hmdb_2_embedding:
     distance=np.sqrt(np.sum((hmdb_1_embedding - hmdb_2_embedding)**2))
     return distance
 
-def cal_list_similarity(hmdb_embeddings, hmdb_1, hmdb_list, distance_type="cosine"):
+def cal_list_similarity(hmdb_embeddings, hmdb_1, hmdb_list=None, distance_type="cosine"):
     """
     Calculates the similarity between an HMDB compound and a list of other
     HMDB compounds.
@@ -82,6 +82,8 @@ def cal_list_similarity(hmdb_embeddings, hmdb_1, hmdb_list, distance_type="cosin
     HMDB ID and its similarity score with the first compound
     """
     similarity_dict = {}
+    if not hmdb_list:
+        hmdb_list=list(hmdb_embeddings.keys())
     for hmdb_id in hmdb_list:
         if hmdb_id != hmdb_1:
             if distance_type == "cosine":
@@ -91,7 +93,7 @@ def cal_list_similarity(hmdb_embeddings, hmdb_1, hmdb_list, distance_type="cosin
     similarity_list = list(similarity_dict.items())
     return similarity_list
     
-def most_similar(hmdb_embeddings, hmdb_1, hmdb_list, topk=5, distance_type="cosine"):
+def most_similar(hmdb_embeddings, hmdb_1, hmdb_list=None, topk=5, distance_type="cosine"):
     """
     Returns the top k most similar HMDB compounds to a given compound.
 

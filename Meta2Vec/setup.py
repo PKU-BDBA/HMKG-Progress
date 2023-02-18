@@ -3,11 +3,11 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
-requirements = ["pickle","os","urllib","umap"]
+requirements = []
 
 setup(
     name="meta2vec",
-    version="0.1.0",
+    version="0.1.0.3",
     author="Yuxing Lu",
     author_email="yxlu0613@gmail.com",
     description="meta2vec, an embedding for Metabolomics study",
