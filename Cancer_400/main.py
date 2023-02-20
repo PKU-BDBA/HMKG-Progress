@@ -1,5 +1,4 @@
-from HMKG import HMKG
-
+from HMKG.hmkg import HMKG
 
 if __name__=="__main__":
 

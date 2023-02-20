@@ -1,6 +1,12 @@
 MANIFEST.in
 README.md
 setup.py
+Meta2Vec.egg-info/PKG-INFO
+Meta2Vec.egg-info/SOURCES.txt
+Meta2Vec.egg-info/dependency_links.txt
+Meta2Vec.egg-info/top_level.txt
+dist/meta2vec-0.1.0.3-py3-none-any.whl
+dist/meta2vec-0.1.0.3.tar.gz
 meta2vec/.DS_Store
 meta2vec/__init__.py
 meta2vec/distance.py

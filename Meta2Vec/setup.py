@@ -6,11 +6,11 @@ with open("README.md", "r") as readme_file:
 requirements = []
 
 setup(
-    name="meta2vec",
-    version="0.1.0.3",
+    name="Meta2Vec",
+    version="0.1.0.4",
     author="Yuxing Lu",
     author_email="yxlu0613@gmail.com",
-    description="meta2vec, an embedding for Metabolomics study",
+    description="Meta2Vec, an embedding for Metabolomics study",
     long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/YuxingLu613/meta2vec",

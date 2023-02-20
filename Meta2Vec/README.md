@@ -1,6 +1,15 @@
 # meta2vec
 
-`meta2vec` is a Python package for metabolite embedding, which allows for the representation of metabolites in a vector space. 
+<a href='https://opensource.org/licenses/MIT'>
+    <img src='https://img.shields.io/badge/License-MIT-blue.svg' alt='License'/>
+  </a>
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pykeen)
+
+![PyPI](https://img.shields.io/pypi/v/pykeen)
+
+
+`meta2vec` is a Python package for metabolite embedding, which allows for the representation of metabolites in a vector space.
 
 `meta2vec` package contains three modules:
 
