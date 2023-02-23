@@ -1,5 +1,12 @@
 # HMKG
 
+<a href='https://opensource.org/licenses/MIT'>
+    <img src='https://img.shields.io/badge/License-MIT-blue.svg' alt='License'/>
+  </a>
+  
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/HMKG)
+![PyPI](https://img.shields.io/pypi/v/HMKG)
+
 This package aims to download, preprocess, and analyze the Human Metabolome Database (HMDB) for metabolomics knowledge graph construction and knowledge graph embedding (KGE) tasks.
 
 ## Package Structure
