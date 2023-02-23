@@ -57,13 +57,13 @@ def create_triples(input_path,selected_metabolites=None):
         id = 0
         HMDB_NO = h_key
         HMDB_dict = {}
-        for key, value in h_value.items():
+        for key, value in list(h_value.items())[:10]:
 
             if not value:
                 continue
 
             if key == "secondary_accessions":
-
+                
                 if isinstance(value["accession"], str):
                     HMDB_list.append(clean_quote(value["accession"]))
                     Rel_secondary_accession.append(
@@ -100,6 +100,7 @@ def create_triples(input_path,selected_metabolites=None):
                             Substituent_list.append(clean_quote(v))
                             Rel_substituent.append(
                                 [HMDB_NO, "substituent", clean_quote(v)])
+
                 if "external_descriptors" in value.keys():
                     external_descriptor = value.pop("external_descriptors")
                     if external_descriptor:
@@ -343,6 +344,3 @@ def create_triples(input_path,selected_metabolites=None):
         info_writer.writerows(Node_list)
 
     return 'data/triples.txt'
-
-create_triples("/Users/colton/Desktop/代谢组学汇总/HMKG-Progress/HMKG/hmkg/HMDB/data/hmdb_metabolites.json")
-

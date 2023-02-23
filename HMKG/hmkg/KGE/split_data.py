@@ -12,10 +12,13 @@ def split_data(triple_path,info_path="data/info.txt"):
     eva_class = {}
 
     ##读取文件中总数据集
-    with open(triple_path, newline='', encoding='utf-8') as in_file:
-        Meta = csv.reader(in_file, delimiter='\t')
-        for line in Meta:
-            Meta_All.append(line)
+    if type(triple_path)==str:
+        with open(triple_path, newline='', encoding='utf-8') as in_file:
+            Meta = csv.reader(in_file, delimiter='\t')
+            for line in Meta:
+                Meta_All.append(line)
+    else:
+        Meta_All=triple_path
 
     ##使用字典格式记录每种rel的数量
     Meta_num_All = len(Meta_All)

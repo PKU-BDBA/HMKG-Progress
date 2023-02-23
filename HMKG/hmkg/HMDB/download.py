@@ -1,9 +1,10 @@
 import urllib.request
 import os
 from .utils import reporthook,unzip_file
+import urllib
 
 
-def download_HMDB(url="https://hmdb.ca/system/downloads/current/saliva_metabolites.zip", file_path="data/saliva_metabolites.zip"):
+def download_HMDB(url="https://hmdb.ca/system/downloads/current/hmdb_metabolites.zip", file_path="data/hmdb_metabolites.zip"):
     """Downloads the HMDB data from the given URL and extracts it to a specified directory.
 
     Args:
