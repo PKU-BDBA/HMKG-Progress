@@ -12,8 +12,11 @@ entities,triples=construct_graph.construct_KG("/Users/colton/Desktop/代谢组�
 
 split_data(triple_path=triples)
 
-kge=KGEmbedding(model_name="TransE")
+kge=KGEmbedding(model_name="TransH")
 
 kge.construct_triples()
 kge.save_id_mapping()
 kge.KGE_model_pipeline()
+
+# TransE  ('hits_at_10', 'head', 'optimistic'): 0.15977071391349662,
+# TransH  ('hits_at_10', 'head', 'optimistic'): 0.6548202188639917,

@@ -111,19 +111,19 @@ class KGEmbedding():
         # Train
         _ = training_loop.train(
             triples_factory=triple_factor_data_train,
-            num_epochs=5,
+            num_epochs=100,
             batch_size=256,
         )
         
-        print(self.model.entity_representations[0]._embeddings.weight.data[0])
-        self.model.entity_representations[0]._embeddings.weight.data[0]=torch.tensor([0.]*50)
-        print(self.model.entity_representations[0]._embeddings.weight.data[0])
+        # print(self.model.entity_representations[0]._embeddings.weight.data[0])
+        # self.model.entity_representations[0]._embeddings.weight.data[0]=torch.tensor([0.]*50)
+        # print(self.model.entity_representations[0]._embeddings.weight.data[0])
         
-        _ = training_loop.train(
-            triples_factory=triple_factor_data_train,
-            num_epochs=5,
-            batch_size=256,
-        )
+        # _ = training_loop.train(
+        #     triples_factory=triple_factor_data_train,
+        #     num_epochs=100,
+        #     batch_size=256,
+        # )
         
         print(self.model.entity_representations[0]._embeddings.weight.data[0])
         
@@ -150,7 +150,7 @@ class KGEmbedding():
         results = evaluator.evaluate(
             model=self.model,
             mapped_triples=mapped_triples,
-            batch_size=256,
+            batch_size=1024,
             additional_filter_triples=[
                 triple_factor_data_train.mapped_triples,
                 triple_factor_data_vld.mapped_triples,
