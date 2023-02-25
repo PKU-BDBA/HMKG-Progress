@@ -5,6 +5,7 @@ from .extract_from_internal_database import get_taxonomy,get_property,get_concen
 from .utils import load_json
 from tqdm import tqdm
 import traceback
+import csv
 
 def construct_KG(file_path,link_to_external_database=False,selected_metabolites=None):
     
@@ -72,18 +73,11 @@ def construct_KG(file_path,link_to_external_database=False,selected_metabolites=
                 protein_entity,protein_triple=get_protein(hmdb_id,meta_data["protein_associations"])
                 entities.update(protein_entity)
                 triples.update(protein_triple)
-                
-            if meta_data["ontology"]:
-                ontology_entity,ontology_triple=get_ontology(hmdb_id,meta_data["ontology"])
-                entities.update(ontology_entity)
-                triples.update(ontology_triple)
-        except Exception as e:
-            traceback.print_exc()
-            pass
+        except:pass
         
         if link_to_external_database:
             try:
-                if meta_data["pubchem_compound_id"]!=None:
+                if meta_data["pubchem_compound_id"]:
                     entities.add(("pubchem_id:"+meta_data["pubchem_compound_id"],"pubchem_id"))
                     triples.add((hmdb_id,"has_pubchem_id","pubchem_id:"+meta_data["pubchem_compound_id"]))
                     pubchem_entity,pubchem_triple=get_PubChem_cpd_info(meta_data["pubchem_compound_id"])
@@ -92,22 +86,38 @@ def construct_KG(file_path,link_to_external_database=False,selected_metabolites=
             except:pass
                 
             try:
-                if meta_data["kegg_id"]!=None:
-                    entities.add(("kegg_id:"+meta_data["kegg_id"],"kegg_id"))
-                    triples.add((hmdb_id,"has_kegg_id","kegg_id:"+meta_data["kegg_id"]))
+                if meta_data["kegg_id"]:
+                    entities.add(("kegg_id:"+meta_data["pubchem_compound_id"],"kegg_id"))
+                    triples.add((hmdb_id,"has_kegg_id","kegg_id:"+meta_data["pubchem_compound_id"]))
                     kegg_entity,kegg_triple=get_KEGG_cpd_info(meta_data["kegg_id"])
                     entities.update(kegg_entity)
                     triples.update(kegg_triple)
             except:pass
                     
             try:
-                if meta_data["chebi_id"]!=None:
+                if meta_data["chebi_id"]:
                     entities.add(("chebi_id:"+meta_data["chebi_id"],"chebi_id"))
                     triples.add((hmdb_id,"has_chebi_id","chebi_id:"+meta_data["chebi_id"]))
                     chebi_id_entity,chebi_id_triple=get_CHEBI_cpd_info(meta_data["chebi_id"])
                     entities.update(chebi_id_entity)
                     triples.update(chebi_id_triple)
             except:pass
+        
+        else:
+            try:
+                if meta_data["pubchem_compound_id"]:
+                    entities.add(("pubchem_id:"+meta_data["pubchem_compound_id"],"pubchem_id"))
+                    triples.add((hmdb_id,"has_pubchem_id","pubchem_id:"+meta_data["pubchem_compound_id"]))
+                    
+                if meta_data["kegg_id"]:
+                    entities.add(("kegg_id:"+meta_data["kegg_id"],"kegg_id"))
+                    triples.add((hmdb_id,"has_kegg_id","kegg_id:"+meta_data["kegg_id"]))
+                    
+                if meta_data["chebi_id"]:
+                    entities.add(("chebi_id:"+meta_data["chebi_id"],"chebi_id"))
+                    triples.add((hmdb_id,"has_chebi_id","chebi_id:"+meta_data["chebi_id"]))
+            except:pass
+
 
     return list(entities),list(triples)
 
@@ -123,3 +133,19 @@ def save_triple(triples):
         for triple in triples:
             f.write("\t".join(triple))
             f.write("\n")
+
+def load_triple():
+    triples=[]
+    with open("data/triples.txt", newline='', encoding='utf-8') as f:
+        all_triples = csv.reader(f, delimiter='\t')
+        for line in all_triples:
+            triples.append(line)
+    return triples
+            
+def load_entity():
+    entities=[]
+    with open("data/entities.txt", newline='', encoding='utf-8') as f:
+        all_entities = csv.reader(f, delimiter='\t')
+        for line in all_entities:
+            entities.append(line)
+    return entities
